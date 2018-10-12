@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    tools:context=".activity.SimulateBlueToothActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/color_eee"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:gravity="center_vertical"
+            android:text="蓝牙开关" />
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_close"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="关闭" />
+
+            <RadioButton
+                android:id="@+id/rb_open"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:checked="true"
+                android:text="打开" />
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btn_discovery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginLeft="@dimen/dp_40"
+            android:text="搜索发现" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_4" />
+</LinearLayout>
