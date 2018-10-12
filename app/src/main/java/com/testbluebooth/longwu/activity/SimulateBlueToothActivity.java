@@ -23,6 +23,8 @@ import android.widget.RadioButton;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.testbluebooth.longwu.R;
 import com.testbluebooth.longwu.adapter.SimulateItemDataAdapter;
+import com.testbluebooth.longwu.callback.PinBlueCallBack;
+import com.testbluebooth.longwu.receiver.PinBluetoothReceiver;
 import com.testbluebooth.longwu.util.ToastUtil;
 
 import java.lang.reflect.Method;
@@ -98,7 +100,7 @@ public class SimulateBlueToothActivity extends AppCompatActivity {
                 } else if (device.getBondState() == BluetoothDevice.BOND_NONE) {
                     btnDiscovery.setText("取消配对" + device.getName());
                 }
-            }else if(action.equals(BluetoothDevice.ACTION_PAIRING_REQUEST)){
+            } else if (action.equals(BluetoothDevice.ACTION_PAIRING_REQUEST)) {
 
 
             }
@@ -288,8 +290,8 @@ public class SimulateBlueToothActivity extends AppCompatActivity {
 
                     IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
                     filter.addAction(BluetoothDevice.ACTION_PAIRING_REQUEST);
-
-                    registerReceiver(blueReceiver, filter);//广播接收器 共用一个;
+                    pinPair(devices.get(position));
+                    registerReceiver(pinBluetoothReceiver, filter);//广播接收器 共用一个;
                 }
             });
         } else {
@@ -297,4 +299,41 @@ public class SimulateBlueToothActivity extends AppCompatActivity {
         }
 
     }
+
+   private  PinBluetoothReceiver pinBluetoothReceiver = new PinBluetoothReceiver(new PinBlueCallBack() {
+        @Override
+        public void onScanStarted() {
+            ToastUtil.showShort("扫描开始");
+        }
+
+        @Override
+        public void onScanFinished() {
+            ToastUtil.showShort("扫描结束");
+        }
+
+        @Override
+        public void onScanning(BluetoothDevice device) {
+            ToastUtil.showShort("扫描中...");
+        }
+
+        @Override
+        public void onBondSuccess(BluetoothDevice device) {
+            ToastUtil.showShort("配对成功");
+        }
+
+        @Override
+        public void onBonding(BluetoothDevice device) {
+            ToastUtil.showShort("配对中...");
+        }
+
+        @Override
+        public void onBondFail(BluetoothDevice device) {
+            ToastUtil.showShort("配对失败");
+        }
+
+        @Override
+        public void onBondRequest() {
+            ToastUtil.showShort("配对请求");
+        }
+    });
 }

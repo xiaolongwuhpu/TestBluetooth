@@ -10,11 +10,11 @@ public abstract interface PinBlueCallBack {
 
     public void onScanning(BluetoothDevice device);
 
-    public void onBondSuccess();
+    public void onBondSuccess(BluetoothDevice device);
 
-    public void onBonding();
+    public void onBonding(BluetoothDevice device);
 
-    public void onBondFail();
+    public void onBondFail(BluetoothDevice device);
 
     public void onBondRequest();
 }

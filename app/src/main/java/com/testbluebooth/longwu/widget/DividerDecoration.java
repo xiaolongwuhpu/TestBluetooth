@@ -10,9 +10,6 @@
 //import android.support.v7.widget.StaggeredGridLayoutManager;
 //import android.view.View;
 //
-//import cn.shenyang.xycr.widget.recyclerview.adapter.RecyclerArrayAdapter;
-//
-//
 //public class DividerDecoration extends RecyclerView.ItemDecoration{
 //    private ColorDrawable mColorDrawable;
 //    private int mHeight;
